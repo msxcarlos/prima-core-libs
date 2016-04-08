@@ -417,7 +417,12 @@ public class SaxPageHandler_Hocr extends SaxPageHandler {
 	 */
 	private Polygon parseCoords(String coordsString) {
 		Polygon ret = null;
-		String parts[] = coordsString.split(" ");
+		String parts[] = null;
+		if(coordsString.contains(";")) {
+			parts = coordsString.substring(0,coordsString.indexOf(';')).split(" ");
+		} else {
+			parts = coordsString.split(" ");
+		}
 		if (parts.length == 5) {
 			ret = new Polygon();
 			int x1 = new Integer(parts[1]);
